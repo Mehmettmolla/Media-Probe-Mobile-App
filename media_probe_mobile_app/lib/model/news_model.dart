@@ -82,7 +82,7 @@ class NewsModelResultsMedia {
   final v = json['media-metadata'];
   final arr0 = <NewsModelResultsMediaMediaMetadata>[];
   v.forEach((v) {
-  arr0.add(NewsModelResultsMediaMediaMetadata.fromJson(v));
+  arr0.add(NewsModelResultsMediaMediaMetadata.fromJson(v  as  Map<String, dynamic>));
   });
     mediaMetadata = arr0;
     }
@@ -250,7 +250,7 @@ class NewsModelResults {
   final v = json['media'];
   final arr0 = <NewsModelResultsMedia>[];
   v.forEach((v) {
-  arr0.add(NewsModelResultsMedia.fromJson(v));
+  arr0.add(NewsModelResultsMedia.fromJson(v as Map<String, dynamic>));
   });
     media = arr0;
     }
@@ -389,7 +389,7 @@ class NewsModel {
   final v = json['results'];
   final arr0 = <NewsModelResults>[];
   v.forEach((v) {
-  arr0.add(NewsModelResults.fromJson(v));
+  arr0.add(NewsModelResults.fromJson(v  as Map<String, dynamic>));
   });
     results = arr0;
     }

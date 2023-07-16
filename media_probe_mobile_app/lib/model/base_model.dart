@@ -7,7 +7,7 @@ class BaseModel {
     this.message,
   });
   BaseModel.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
+    status = json['status'] as bool?;
     message = json['message']?.toString();
   }
   Map<String, dynamic> toJson() {

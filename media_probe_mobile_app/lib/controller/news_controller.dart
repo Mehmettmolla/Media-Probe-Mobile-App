@@ -26,14 +26,11 @@ class NewsController extends ChangeNotifier {
     )
         .then((value) {
       if (value != null) {
-        _newsModel = value;
+        _newsModel = value  as NewsModel;
         _newsModel?.results
             ?.sort((a, b) => b!.publishedDate!.compareTo(a!.publishedDate!));
         notifyListeners();
       } else {
-        print(
-          value?.message ?? "Bir hata oluştu",
-        );
         isError = true;
         notifyListeners();
       }

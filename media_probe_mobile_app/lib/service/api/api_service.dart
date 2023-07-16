@@ -36,13 +36,13 @@ class ApiService extends BaseService {
           break;
       }
       if (response.statusCode == 200) {
-          if (fromJson != null) {
-            statusListener?.call(false, false);
-            return fromJson(response.data);
-          } else {
-            statusListener?.call(false, false);
-            return BaseModel.fromJson(response.data);
-          }
+        if (fromJson != null) {
+          statusListener?.call(false, false);
+          return fromJson(response.data as Map<String, dynamic>);
+        } else {
+          statusListener?.call(false, false);
+          return BaseModel.fromJson(response.data as Map<String, dynamic>);
+        }
       } else {
         statusListener?.call(false, true);
         throw "Hata kodu: ${response.statusCode}\nHata mesajı: ${response.statusMessage}";

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:media_probe_mobile_app/constant/app/app_color.dart';
 import 'package:media_probe_mobile_app/constant/app/app_constant.dart';
-import 'package:media_probe_mobile_app/constant/app/app_padding.dart';
-import 'package:media_probe_mobile_app/constant/app/app_text_style.dart';
+import 'package:media_probe_mobile_app/constant/text/text_constant.dart';
 import 'package:media_probe_mobile_app/controller/news_controller.dart';
 import 'package:media_probe_mobile_app/extension/navigation/navigation_extension.dart';
-import 'package:media_probe_mobile_app/extension/num/num_extension.dart';
 import 'package:media_probe_mobile_app/extension/widget/widget_extension.dart';
 import 'package:media_probe_mobile_app/view/news_detail/news_detail_view.dart';
 import 'package:media_probe_mobile_app/widgets/app_bar/custom_app_bar.dart';
@@ -34,7 +31,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
     final watch = ref.watch(newsController);
     return Scaffold(
       appBar: const CustomAppBar(
-        title: "NY Times Most Popular",
+        title: TextConstant.appBarTitle,
       ),
       body: watch.isLoading
           ? const Center(
@@ -56,7 +53,15 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             : item.media!.first!.mediaMetadata!.first!.url)
                     .gestureDetector(
                   onTap: () => context.navigateToPage(
-                    const NewsDetailView(),
+                    NewsDetailView(
+                      title: item.title,
+                      subtitle: item.theAbstract,
+                      publisher: item.section,
+                      date: item.publishedDate,
+                      image: item.media!.isEmpty
+                          ? AppConstant.NO_DATA_IMAGE
+                          : item.media!.first!.mediaMetadata!.first!.url,
+                    ),
                   ),
                 );
               },
