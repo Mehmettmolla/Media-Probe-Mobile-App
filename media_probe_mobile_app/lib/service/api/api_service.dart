@@ -7,7 +7,8 @@ import '../base/base_service.dart';
 typedef FromJson<T> = T Function(Map<String, dynamic> json);
 
 class ApiService extends BaseService {
-  static final dio = Dio();
+  static final Dio _dio = Dio();
+  static Dio get dio => _dio;
   @override
   Future request(
       {String? url,
@@ -35,7 +36,6 @@ class ApiService extends BaseService {
           break;
       }
       if (response.statusCode == 200) {
-        if (response.data['success'] == true) {
           if (fromJson != null) {
             statusListener?.call(false, false);
             return fromJson(response.data);
@@ -43,18 +43,21 @@ class ApiService extends BaseService {
             statusListener?.call(false, false);
             return BaseModel.fromJson(response.data);
           }
-        } else {
-          statusListener?.call(false, true);
-          throw "Hata: ${response.data['message']}";
-        }
       } else {
         statusListener?.call(false, true);
         throw "Hata kodu: ${response.statusCode}\nHata mesajı: ${response.statusMessage}";
       }
     } on DioError catch (e) {
       var response = e.response;
-      statusListener?.call(false, true);
-      throw "Hata kodu: ${response?.statusCode}\nHata mesajı: ${response?.statusMessage}";
+      if (response != null) {
+        String errorMessage =
+            'Hata kodu: ${response.statusCode}\nHata mesajı: ${response.statusMessage}';
+        statusListener?.call(false, true);
+        throw errorMessage;
+      } else {
+        statusListener?.call(false, true);
+        throw 'Bir hata oluştu. Lütfen tekrar deneyin.';
+      }
     } catch (e) {
       statusListener?.call(false, true);
       rethrow;

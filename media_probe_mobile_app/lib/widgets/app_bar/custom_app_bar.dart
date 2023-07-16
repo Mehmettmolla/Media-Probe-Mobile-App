@@ -8,7 +8,7 @@ class CustomAppBar extends ConsumerStatefulWidget
   const CustomAppBar(
       {super.key,
       this.title,
-      this.preferredSize = const Size.fromHeight(60),
+      this.preferredSize = const Size.fromHeight(55),
       this.isBack = false});
   @override
   final Size preferredSize;
@@ -32,11 +32,13 @@ class _CustomAppBarState extends ConsumerState<CustomAppBar> {
       ):
       IconButton(
         icon: const Icon(Icons.arrow_back,color: AppColor.white,),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
       ),
       title:  Text(
         widget.title!,
-        style: AppTextStyle.medium22White,
+        style: AppTextStyle.regular17White,
       ),
       actions: [
         IconButton(
