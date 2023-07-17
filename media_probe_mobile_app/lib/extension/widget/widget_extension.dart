@@ -6,18 +6,18 @@ extension PaddingExtension on Widget {
         child: this,
       );
   Padding paddingOnly(
-          {double? top, double? bottom, double? left, double? right}) =>
+          {double? top, double? bottom, double? left, double? right,}) =>
       Padding(
         padding: EdgeInsets.only(
             top: top ?? 0.0,
             bottom: bottom ?? 0.0,
             left: left ?? 0.0,
-            right: right ?? 0.0),
+            right: right ?? 0.0,),
         child: this,
       );
   Padding paddingSymetric({double? horizontal, double? vertical}) => Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: horizontal ?? 0.0, vertical: vertical ?? 0.0),
+            horizontal: horizontal ?? 0.0, vertical: vertical ?? 0.0,),
         child: this,
       );
 }
@@ -25,8 +25,8 @@ extension ExpansionTileExtension on ExpansionTile {
   Widget removeDivider() => Builder(builder: (context) {
         return Theme(
             data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-            child: this);
-      });
+            child: this,);
+      },);
 }
 
 

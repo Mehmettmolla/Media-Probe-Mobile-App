@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:media_probe_mobile_app/model/base_model.dart';
 
-import '../base/base_service.dart';
+import 'package:media_probe_mobile_app/service/base/base_service.dart';
 
 typedef FromJson<T> = T Function(Map<String, dynamic> json);
 
@@ -10,12 +10,12 @@ class ApiService extends BaseService {
   static final Dio _dio = Dio();
   static Dio get dio => _dio;
   @override
-  Future request(
+   Future<dynamic> request(
       {String? url,
       ApiType type = ApiType.GET,
       FromJson? fromJson,
       void Function(bool loading, bool error)? statusListener,
-      dynamic data}) async {
+      dynamic data,}) async {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       statusListener?.call(true, false);
     });
@@ -45,12 +45,12 @@ class ApiService extends BaseService {
         }
       } else {
         statusListener?.call(false, true);
-        throw "Hata kodu: ${response.statusCode}\nHata mesajı: ${response.statusMessage}";
+        throw 'Hata kodu: ${response.statusCode}\nHata mesajı: ${response.statusMessage}';
       }
     } on DioError catch (e) {
-      var response = e.response;
+      final response = e.response;
       if (response != null) {
-        String errorMessage =
+        final errorMessage =
             'Hata kodu: ${response.statusCode}\nHata mesajı: ${response.statusMessage}';
         statusListener?.call(false, true);
         throw errorMessage;

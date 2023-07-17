@@ -7,13 +7,14 @@ import 'package:media_probe_mobile_app/extension/widget/widget_extension.dart';
 import 'package:media_probe_mobile_app/widgets/app_bar/custom_app_bar.dart';
 
 class NewsDetailView extends ConsumerStatefulWidget {
-  const NewsDetailView(
-      {super.key,
-      this.title,
-      this.subtitle,
-      this.publisher,
-      this.date,
-      this.image});
+  const NewsDetailView({
+    super.key,
+    this.title,
+    this.subtitle,
+    this.publisher,
+    this.date,
+    this.image,
+  });
   final String? title;
   final String? subtitle;
   final String? publisher;
@@ -29,11 +30,10 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: "${widget.title} Detail",
+        title: '${widget.title} Detail',
         isBack: true,
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Hero(
             tag: widget.image!,
@@ -49,7 +49,7 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView> {
               ),
             ),
           ),
-          AppPadding.smallPadding.height,
+          AppPadding.largePadding.height,
           Text(
             widget.title!,
             style: AppTextStyle.semiBold16Black,

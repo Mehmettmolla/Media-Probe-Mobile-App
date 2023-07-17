@@ -9,7 +9,7 @@ class CustomAppBar extends ConsumerStatefulWidget
       {super.key,
       this.title,
       this.preferredSize = const Size.fromHeight(55),
-      this.isBack = false});
+      this.isBack = false,});
   @override
   final Size preferredSize;
 

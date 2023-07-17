@@ -37,7 +37,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
           ? const Center(
               child: CircularProgressIndicator(
               color: AppColor.primaryGreen,
-            ))
+            ),)
           : ListView.builder(
               shrinkWrap: true,
               itemCount: watch.newsModel?.results?.length ?? 0,
@@ -46,17 +46,17 @@ class _HomeViewState extends ConsumerState<HomeView> {
                 return CustomNewsCard(
                         title: item?.title,
                         subtitle: item?.theAbstract,
-                        publisher: item?.section,
+                        publisher: item?.byline,
                         date: item?.publishedDate,
                         image: item!.media!.isEmpty
                             ? AppConstant.NO_DATA_IMAGE
-                            : item.media!.first!.mediaMetadata!.first!.url)
+                            : item.media!.first!.mediaMetadata!.first!.url,)
                     .gestureDetector(
                   onTap: () => context.navigateToPage(
                     NewsDetailView(
                       title: item.title,
                       subtitle: item.theAbstract,
-                      publisher: item.section,
+                      publisher: item.byline,
                       date: item.publishedDate,
                       image: item.media!.isEmpty
                           ? AppConstant.NO_DATA_IMAGE

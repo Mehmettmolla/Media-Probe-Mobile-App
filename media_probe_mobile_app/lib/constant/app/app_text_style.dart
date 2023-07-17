@@ -26,12 +26,3 @@ class AppTextStyle {
   );
   
 }
-
-  // - asset: assets/fonts/poppins/Poppins-Regular.ttf
-  //         weight: 400
-  //       - asset: assets/fonts/poppins/Poppins-Medium.ttf
-  //         weight: 500
-  //       - asset: assets/fonts/poppins/Poppins-SemiBold.ttf
-  //         weight: 600
-  //       - asset: assets/fonts/poppins/Poppins-Bold.ttf
-  //         weight: 700  

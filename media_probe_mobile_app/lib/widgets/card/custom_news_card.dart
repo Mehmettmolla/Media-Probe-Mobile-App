@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:media_probe_mobile_app/constant/app/app_padding.dart';
 import 'package:media_probe_mobile_app/constant/app/app_text_style.dart';
-import 'package:media_probe_mobile_app/extension/navigation/navigation_extension.dart';
 import 'package:media_probe_mobile_app/extension/num/num_extension.dart';
-import 'package:media_probe_mobile_app/view/news_detail/news_detail_view.dart';
 
 class CustomNewsCard extends StatelessWidget {
   const CustomNewsCard(
@@ -12,7 +10,7 @@ class CustomNewsCard extends StatelessWidget {
       this.publisher,
       this.date,
       this.subtitle,
-      this.image});
+      this.image,});
   final String? title;
   final String? publisher;
   final String? date;
@@ -27,7 +25,6 @@ class CustomNewsCard extends StatelessWidget {
         vertical: AppPadding.verticalPadding,
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Hero(
             tag: image!,
@@ -61,11 +58,14 @@ class CustomNewsCard extends StatelessWidget {
                 AppPadding.smallPadding.height,
                 Row(
                   children: [
-                    Text(
-                      publisher!,
-                      style: AppTextStyle.medium16Grey,
+                    Expanded(
+                      child: Text(
+                        publisher!,
+                        style: AppTextStyle.medium16Grey,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                    const Spacer(),
+                    AppPadding.smallPadding.width,
                     Row(
                       children: [
                         const Icon(

@@ -21,8 +21,8 @@ class NewsController extends ChangeNotifier {
         isError = error;
         notifyListeners();
       },
-      url: "${AppConstant.BASE_URL}api-key=${AppConstant.API_KEY}",
-      fromJson: (json) => NewsModel.fromJson(json),
+      url: '${AppConstant.BASE_URL}api-key=${AppConstant.API_KEY}',
+      fromJson: NewsModel.fromJson,
     )
         .then((value) {
       if (value != null) {
