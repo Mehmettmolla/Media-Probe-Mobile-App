@@ -5,7 +5,8 @@ import 'package:media_probe_mobile_app/constant/app/app_color.dart';
 import 'package:media_probe_mobile_app/view/home/home_view.dart';
 
 Future main() async {
-  // await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: '.env');
+
   runApp(const ProviderScope(child: MyApp()));
 }
 

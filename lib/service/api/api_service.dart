@@ -10,12 +10,13 @@ class ApiService extends BaseService {
   static final Dio _dio = Dio();
   static Dio get dio => _dio;
   @override
-   Future<dynamic> request(
-      {String? url,
-      ApiType type = ApiType.GET,
-      FromJson? fromJson,
-      void Function(bool loading, bool error)? statusListener,
-      dynamic data,}) async {
+  Future<dynamic> request({
+    String? url,
+    ApiType type = ApiType.GET,
+    FromJson? fromJson,
+    void Function(bool loading, bool error)? statusListener,
+    dynamic data,
+  }) async {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       statusListener?.call(true, false);
     });
@@ -43,20 +44,20 @@ class ApiService extends BaseService {
           statusListener?.call(false, false);
           return BaseModel.fromJson(response.data as Map<String, dynamic>);
         }
+      } else if (response.statusCode == 201) {
+        statusListener?.call(false, false);
+        return BaseModel.fromJson(response.data as Map<String, dynamic>);
+      } else if (response.statusCode == 204) {
+        statusListener?.call(false, false);
+        return BaseModel.fromJson(response.data as Map<String, dynamic>);
+      } else if (response.statusCode == 400) {
+        throw DioError(
+          requestOptions: response.requestOptions,
+          response: response,
+        );
       } else {
         statusListener?.call(false, true);
         throw 'Hata kodu: ${response.statusCode}\nHata mesajı: ${response.statusMessage}';
-      }
-    } on DioError catch (e) {
-      final response = e.response;
-      if (response != null) {
-        final errorMessage =
-            'Hata kodu: ${response.statusCode}\nHata mesajı: ${response.statusMessage}';
-        statusListener?.call(false, true);
-        throw errorMessage;
-      } else {
-        statusListener?.call(false, true);
-        throw 'Bir hata oluştu. Lütfen tekrar deneyin.';
       }
     } catch (e) {
       statusListener?.call(false, true);

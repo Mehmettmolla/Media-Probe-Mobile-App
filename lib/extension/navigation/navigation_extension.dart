@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 extension MaterialNavigationExtension on BuildContext {
   void navigateToPage(Widget page) {
     Navigator.of(this).push(
-      MaterialPageRoute(builder: (context) => page),
+      MaterialPageRoute(builder: (context) => page,),
     );
   }
 
