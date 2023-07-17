@@ -1,6 +1,9 @@
 # Media Probe Mobile App
 ## Video
-https://github.com/Mehmettmolla/Media-Probe-Mobile-App/blob/development/assets/video.mp4
+
+
+https://github.com/Mehmettmolla/Media-Probe-Mobile-App/assets/48689887/b74e765f-d5aa-4487-80d0-495e340e2d33
+
 
 Media Probe Mobile App is a simple Flutter mobile app that displays a list of news articles from the last 7 days and allows users to view their details.
 
